@@ -1,5 +1,6 @@
 package com.example.blog_app_apis.controller;
 
+import com.example.blog_app_apis.payloads.ApiResponse;
 import com.example.blog_app_apis.payloads.UserDto;
 import com.example.blog_app_apis.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,17 @@ public class UserController {
 
         UserDto updatedUser = this.userService.updateUser(userDto, userId);
         return ResponseEntity.ok(updatedUser);
+
+    }
+
+    //Delete --user delete
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<ApiResponse> deleteUser(@PathVariable("userId") Integer userId)
+    {
+        System.out.println("delete user controller");
+
+        this.userService.deleteUser(userId);
+        return new ResponseEntity<ApiResponse>(new ApiResponse("user deleted" , true), HttpStatus.OK);
 
     }
 }
