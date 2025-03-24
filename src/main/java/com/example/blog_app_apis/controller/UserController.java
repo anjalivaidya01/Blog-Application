@@ -39,4 +39,14 @@ public class UserController {
         return ResponseEntity.ok(this.userService.getUserById(userId));
     }
 
+    //put--update user
+    @PutMapping("/{userId}")
+    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto , @PathVariable("userId") Integer userId)
+    {
+        System.out.println("update user controller");
+
+        UserDto updatedUser = this.userService.updateUser(userDto, userId);
+        return ResponseEntity.ok(updatedUser);
+
+    }
 }
