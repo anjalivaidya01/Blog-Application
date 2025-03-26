@@ -11,7 +11,9 @@ import com.example.blog_app_apis.entity.User;
 import com.example.blog_app_apis.payloads.UserDto;
 import com.example.blog_app_apis.repositories.UserRepository;
 import com.example.blog_app_apis.services.UserService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServiceImpl implements UserService {
 
 	
@@ -20,15 +22,6 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public UserDto createUser(UserDto userDto) {
-
-		System.out.println("hello world");
-
-		System.out.println("Dhoom 5");
-
-		System.out.println("My new hello world program");
-
-
-
 
 		User user = this.dtoToUser(userDto);
 		User savedUser = this.userRepository.save(user);
@@ -46,11 +39,11 @@ public class UserServiceImpl implements UserService {
 		user.setAbout(userDto.getAbout());
 		
 		User updateUser = this.userRepository.save(user);
-		UserDto userDto1 = this.userToDto(updateUser);
+		//UserDto userDto1 = this.userToDto(updateUser);
 		
 		
 		
-		return userDto1;
+		return this.userToDto(updateUser);
 		
 	}
 
@@ -82,10 +75,10 @@ public class UserServiceImpl implements UserService {
 	private User dtoToUser(UserDto userDto)
 	{
 		User user = new User();
-		user.setId(userDto.getId());
+		user.setId(user.getId());
 		user.setName(userDto.getName());
 		user.setEmail(userDto.getEmail());
-		user.setAbout(user.getAbout());
+		user.setAbout(userDto.getAbout());
 		user.setPassword(userDto.getPassword());
 		
 		
