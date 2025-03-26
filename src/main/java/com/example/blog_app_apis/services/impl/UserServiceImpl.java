@@ -23,15 +23,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDto createUser(UserDto userDto) {
 
-		System.out.println("hello world");
-
-		System.out.println("Dhoom 5");
-
-		System.out.println("My new hello world program");
-
-
-
-
 		User user = this.dtoToUser(userDto);
 		User savedUser = this.userRepository.save(user);
 		return this.userToDto(savedUser);
@@ -48,11 +39,11 @@ public class UserServiceImpl implements UserService {
 		user.setAbout(userDto.getAbout());
 		
 		User updateUser = this.userRepository.save(user);
-		UserDto userDto1 = this.userToDto(updateUser);
+		//UserDto userDto1 = this.userToDto(updateUser);
 		
 		
 		
-		return userDto1;
+		return this.userToDto(updateUser);
 		
 	}
 
