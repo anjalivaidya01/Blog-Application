@@ -58,7 +58,7 @@ public class UserController {
         System.out.println("delete user controller");
 
         this.userService.deleteUser(userId);
-        return new ResponseEntity<ApiResponse>(new ApiResponse("user deleted" , true), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse("user deleted" , true), HttpStatus.OK);
 
     }
 }
