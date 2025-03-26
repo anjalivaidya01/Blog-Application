@@ -11,7 +11,9 @@ import com.example.blog_app_apis.entity.User;
 import com.example.blog_app_apis.payloads.UserDto;
 import com.example.blog_app_apis.repositories.UserRepository;
 import com.example.blog_app_apis.services.UserService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServiceImpl implements UserService {
 
 	
@@ -82,10 +84,10 @@ public class UserServiceImpl implements UserService {
 	private User dtoToUser(UserDto userDto)
 	{
 		User user = new User();
-		user.setId(userDto.getId());
+		user.setId(user.getId());
 		user.setName(userDto.getName());
 		user.setEmail(userDto.getEmail());
-		user.setAbout(user.getAbout());
+		user.setAbout(userDto.getAbout());
 		user.setPassword(userDto.getPassword());
 		
 		
