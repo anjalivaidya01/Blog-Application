@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.example.blog_app_apis.exception.*;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -19,7 +20,10 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserRepository userRepository;
-	
+
+	@Autowired
+	private ModelMapper modelMapper;
+
 	@Override
 	public UserDto createUser(UserDto userDto) {
 
@@ -74,12 +78,13 @@ public class UserServiceImpl implements UserService {
 
 	private User dtoToUser(UserDto userDto)
 	{
-		User user = new User();
-		user.setId(user.getId());
+		User user = this.modelMapper.map(userDto, User.class);
+		//we are converting dto to user so mapping model of dto to user
+		/*user.setId(user.getId());
 		user.setName(userDto.getName());
 		user.setEmail(userDto.getEmail());
 		user.setAbout(userDto.getAbout());
-		user.setPassword(userDto.getPassword());
+		user.setPassword(userDto.getPassword());*/
 		
 		
 		
@@ -91,12 +96,14 @@ public class UserServiceImpl implements UserService {
 	
 	public UserDto  userToDto(User user) {
 		
-		UserDto userDto = new UserDto();
-		userDto.setId(user.getId());
+		UserDto userDto = this.modelMapper.map(user , UserDto.class);
+		//we are converting user to dto so mapping model of dto to user
+
+		/*userDto.setId(user.getId());
 		userDto.setName(user.getName());
 		userDto.setEmail(user.getEmail());
 		userDto.setAbout(user.getAbout());
-		userDto.setPassword(user.getPassword());
+		userDto.setPassword(user.getPassword());*/
 		
 		return userDto;
 		
