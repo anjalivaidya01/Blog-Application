@@ -2,11 +2,17 @@ package com.example.blog_app_apis.entity;
 
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 
 @Entity
-@Table(name = "post")
+@Table(name = "posts")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Post {
 
 
@@ -19,6 +25,8 @@ public class Post {
     private String content;
 
     private Date addedDate;
+
+    private String imageName;
 
 
 
