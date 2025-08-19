@@ -5,6 +5,7 @@ import com.example.blog_app_apis.entity.Post;
 import com.example.blog_app_apis.entity.User;
 import com.example.blog_app_apis.exception.ResourceNotFoundException;
 import com.example.blog_app_apis.payloads.PostDto;
+import com.example.blog_app_apis.payloads.PostResponse;
 import com.example.blog_app_apis.repositories.CategoryRepo;
 import com.example.blog_app_apis.repositories.PostReop;
 import com.example.blog_app_apis.repositories.UserRepository;
@@ -76,7 +77,8 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostDto> getAllPost(Integer pageNumber, Integer pageSize) {
+   // public List<PostDto> getAllPost(Integer pageNumber, Integer pageSize) {
+        public PostResponse getAllPost(Integer pageNumber, Integer pageSize) {
 
 
         Pageable p = PageRequest.of(pageNumber, pageSize);
@@ -88,7 +90,20 @@ public class PostServiceImpl implements PostService {
         List<Post> allPosts = pagePost.getContent();
         List<PostDto> postDtos = allPosts.stream().map((post) ->this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
 
-        return postDtos;
+
+        PostResponse postResponse = new PostResponse();
+        postResponse.setContent(postDtos);
+
+        postResponse.setPageNumber(pagePost.getNumber());
+        postResponse.setPageSize(pagePost.getSize());
+        postResponse.setTotalElements(pagePost.getTotalElements());
+        postResponse.setTotalPages(pagePost.getTotalPages());
+        postResponse.setLastPage(pagePost.isLast());
+
+
+
+
+        return postResponse;
     }
 
     @Override
