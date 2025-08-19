@@ -135,10 +135,9 @@ public class PostController {
             @PathVariable Integer postId
             ) throws IOException {
 
+        PostDto postDto = this.postService.getPostById(postId);
         String fileName = this.fileService.uploadImage(path, image);
 
-
-       PostDto postDto = this.postService.getPostById(postId);
        postDto.setImageName(fileName);
        PostDto updatePost = this.postService.updatePost(postDto,postId);
        return new ResponseEntity<PostDto>(updatePost, HttpStatus.OK);
