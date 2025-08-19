@@ -79,10 +79,19 @@ public class PostServiceImpl implements PostService {
 
     @Override
    // public List<PostDto> getAllPost(Integer pageNumber, Integer pageSize) {
-        public PostResponse getAllPost(Integer pageNumber, Integer pageSize, String sortBy) {
+        public PostResponse getAllPost(Integer pageNumber, Integer pageSize, String sortBy, String sortDir) {
+
+        Sort sort = null;
+        if(sortDir.equalsIgnoreCase("asc")){
+            sort = Sort.by(sortBy).ascending();
+
+        }else
+        {
+            sort = Sort.by(sortBy).descending();
+        }
 
 
-        Pageable p = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy));
+        Pageable p = PageRequest.of(pageNumber, pageSize, sort);
 
 
 
