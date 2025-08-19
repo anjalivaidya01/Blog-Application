@@ -60,10 +60,11 @@ public class PostController {
     //public ResponseEntity<List<PostDto>> getAllPost(
     public ResponseEntity<PostResponse> getAllPost(
             @RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber,
-                                                     @RequestParam(value = "pageSize",defaultValue = "10",required = false) Integer pageSize){
+                                                     @RequestParam(value = "pageSize",defaultValue = "10",required = false) Integer pageSize,
+            @RequestParam(value = "sortBy",defaultValue = "postId",required = false) String sortBy){
        // List<PostDto> allPost = this.postService.getAllPost(pageNumber, pageSize);
 
-       PostResponse postResponse = this.postService.getAllPost(pageNumber, pageSize);
+       PostResponse postResponse = this.postService.getAllPost(pageNumber, pageSize, sortBy);
 
        // return new ResponseEntity<List<PostDto>>(allPost, HttpStatus.OK);
         return new ResponseEntity<PostResponse>(postResponse, HttpStatus.OK);
