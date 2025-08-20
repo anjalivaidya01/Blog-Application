@@ -22,14 +22,27 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
 
 @Configuration
 @EnableWebSecurity
+@EnableWebMvc
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
+
+    public static final String[] PUBLIC_URLS={
+            "/api/v1/auth/login/**", "/api/v1/auth/register/**",
+            "/v3/api-docs/**",
+            "/v2/api-docs/**",
+            "/swagger-resources/**",
+            "/swagger-ui/**",
+            "/webjars/**",
+            "/swagger-ui.html"
+    };
+
 
     @Autowired
     private final CustomUserDetailService customUserDetailService;
@@ -58,8 +71,8 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable()) // 🚨 disable CSRF for APIs
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/api/v1/auth/login/**").permitAll()
-                        .requestMatchers("/api/v1/auth/register/**").permitAll() // 👈 allow register
+                        .requestMatchers(PUBLIC_URLS
+                        ).permitAll()
                         .requestMatchers(HttpMethod.GET).permitAll()
                         .anyRequest().authenticated()
                 )
