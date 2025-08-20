@@ -4,7 +4,9 @@ package com.example.blog_app_apis.controller;
 import com.example.blog_app_apis.exception.ApiException;
 import com.example.blog_app_apis.payloads.JwtAuthRequest;
 import com.example.blog_app_apis.payloads.JwtAuthResponse;
+import com.example.blog_app_apis.payloads.UserDto;
 import com.example.blog_app_apis.security.JwtTokenHelper;
+import com.example.blog_app_apis.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +33,9 @@ public class AuthController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private UserService userService;
 
     @PostMapping("/login")
     public ResponseEntity<JwtAuthResponse> createToken(
@@ -62,6 +67,15 @@ public class AuthController {
             throw new ApiException("Invalid credentials");
         }
 
+    }
+
+    //register new user
+
+    @PostMapping("/register")
+    public ResponseEntity<UserDto> registerUser(@RequestBody UserDto userDto){
+        UserDto registerUser = this.userService.registerNewUser(userDto);
+
+        return new ResponseEntity<UserDto>(registerUser, HttpStatus.CREATED);
     }
 
 }
