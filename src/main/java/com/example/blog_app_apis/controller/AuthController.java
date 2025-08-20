@@ -1,6 +1,7 @@
 package com.example.blog_app_apis.controller;
 
 
+import com.example.blog_app_apis.exception.ApiException;
 import com.example.blog_app_apis.payloads.JwtAuthRequest;
 import com.example.blog_app_apis.payloads.JwtAuthResponse;
 import com.example.blog_app_apis.security.JwtTokenHelper;
@@ -58,7 +59,7 @@ public class AuthController {
         } catch (DisabledException e) {
             throw new Exception("User is disabled", e);
         } catch (BadCredentialsException e) {
-            throw new Exception("Invalid credentials", e);
+            throw new ApiException("Invalid credentials");
         }
 
     }
