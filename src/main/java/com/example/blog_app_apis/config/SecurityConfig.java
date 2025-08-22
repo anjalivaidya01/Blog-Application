@@ -76,10 +76,9 @@ public class SecurityConfig {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowCredentials(true);
 
-        // ✅ allow localhost + your Railway domain
         corsConfiguration.setAllowedOrigins(Arrays.asList(
                 "http://localhost:3000",
-                "https://blog-application-production-5b13.up.railway.app"
+                "https://blog-application-production-35f5.up.railway.app"
         ));
 
         corsConfiguration.setAllowedHeaders(Arrays.asList(
@@ -95,6 +94,7 @@ public class SecurityConfig {
 
         return source;
     }
+
 
 
 
