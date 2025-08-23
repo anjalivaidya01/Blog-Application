@@ -1,5 +1,6 @@
 package com.example.blog_app_apis.payloads;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -12,7 +13,8 @@ import lombok.Setter;
 @Setter
 public class CategoryDto {
 
-    //private Integer categoryId;
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
+    private Integer categoryId;
     @NotBlank
     @Size(min = 4)
     private String categoryTitle;

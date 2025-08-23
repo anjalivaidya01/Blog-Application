@@ -1,6 +1,7 @@
 package com.example.blog_app_apis.payloads;
 
 import com.example.blog_app_apis.entity.Role;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,8 +23,8 @@ import java.util.Set;
 public class UserDto {
 
 
-
-//	private int id;
+	@Schema(accessMode = Schema.AccessMode.READ_ONLY)
+	private int id;
 
 	@NonNull
 	@Size(min = 4, message = "Username should be min of 4 characters !!")
@@ -38,6 +39,8 @@ public class UserDto {
 	@NonNull
 	private String about;
 
+
+	@Schema(accessMode = Schema.AccessMode.READ_ONLY)
 	private Set<RoleDto> roles = new HashSet<>();
 	
 	
