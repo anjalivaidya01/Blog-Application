@@ -83,6 +83,8 @@ public class UserServiceImpl implements UserService {
 	public void deleteUser(Integer userId) {
 
 		User user = this.userRepository.findById(userId).orElseThrow(()-> new ResourceNotFoundException("User","Id",userId));
+		user.getRoles().clear();
+		this.userRepository.save(user);
 		this.userRepository.delete(user);
 		
 	}

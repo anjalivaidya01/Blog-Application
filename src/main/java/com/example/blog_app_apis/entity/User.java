@@ -21,9 +21,6 @@ public class User implements UserDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
-	
-	
 	private int id;
 	
 	@Column(name = "user_name", nullable = false, length = 100)
@@ -43,7 +40,7 @@ public class User implements UserDetails {
 	private List<Post> posts = new ArrayList<>();
 
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role",
 	joinColumns =@JoinColumn(name = "user",referencedColumnName ="id"),
 	inverseJoinColumns = @JoinColumn(name = "role",referencedColumnName = "id"))
