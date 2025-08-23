@@ -1,6 +1,9 @@
 package com.example.blog_app_apis.payloads;
 
 import com.example.blog_app_apis.entity.Role;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -17,8 +20,10 @@ import java.util.Set;
 @Getter
 @Setter
 public class UserDto {
-	
-	private int id;
+
+
+
+//	private int id;
 
 	@NonNull
 	@Size(min = 4, message = "Username should be min of 4 characters !!")
