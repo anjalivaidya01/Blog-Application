@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 public class CategoryDto {
 
-    private Integer categoryId;
+    //private Integer categoryId;
     @NotBlank
     @Size(min = 4)
     private String categoryTitle;
